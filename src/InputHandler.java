@@ -1,3 +1,6 @@
+import api.ApiService;
+import representation.ResourceRepresentation;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +24,7 @@ public class InputHandler {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            HelloMessageIllustrator.helloInstruction(menu, ResourceRepresentation::getDescription);
+            HelloMessageIllustrator.helloInstruction(menu, ResourceRepresentation::description);
             HelloMessageIllustrator.helloInstruction(options, Function.identity());
 
             System.out.print("Choose option: ");
@@ -56,13 +59,13 @@ public class InputHandler {
 
     private List<String> getUrisForRequest(HashMap<Integer, ResourceRepresentation> menu) {
         return menu.values().stream()
-                .map(ResourceRepresentation::getUrl)
+                .map(ResourceRepresentation::url)
                 .collect(Collectors.toList());
     }
 
     private List<String> getFileNamesForRequest(HashMap<Integer, ResourceRepresentation> menu) {
         return menu.values().stream()
-                .map(r -> "src/files/" + r.getDescription())
+                .map(r -> "src/files/" + r.description())
                 .collect(Collectors.toList());
     }
 }

@@ -1,10 +1,13 @@
-import java.io.IOException;
+package api;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+import representation.ResourceRepresentation;
+
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -12,7 +15,7 @@ public class ApiService {
     private final HttpClient httpClient = HttpClient.newHttpClient();
 
     public CompletableFuture<String> sendRequest(int choice, Map<Integer, ResourceRepresentation> map) {
-        HttpRequest httpRequest = buildGetRequest(map.get(choice).getUrl());
+        HttpRequest httpRequest = buildGetRequest(map.get(choice).url());
 
         return performRequest(httpRequest);
     }
